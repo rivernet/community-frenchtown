@@ -1,0 +1,24 @@
+{
+  "name": "Frenchtown Community Hub",
+  "tagline": "Local resources, announcements, and secure communication tools",
+  "announcements": [
+    {
+      "title": "Community Update",
+      "text": "Latest updates from Holly's announcement feed will appear here."
+    },
+    {
+      "title": "Events",
+      "text": "Upcoming local events and town gatherings."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Local Services",
+      "text": "Find trusted local providers and essential services."
+    },
+    {
+      "title": "Volunteer",
+      "text": "Get involved and help your community grow stronger."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frenchtown Community Hub</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa;
+    color: #1a1a1a;
+}
+header {
+    background: linear-gradient(135deg, #1d3557, #457b9d);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+header h1 { margin: 0; font-size: 42px; }
+header p { font-size: 18px; opacity: 0.9; }
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+
+.cta {
+    text-align: center;
+    background: #e63946;
+    color: white;
+    padding: 50px 20px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.cta button {
+    background: white;
+    color: #e63946;
+    border: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<header id="header"></header>
+
+<div class="container">
+
+<h2>Announcements</h2>
+<div id="announcements" class="grid"></div>
+
+<h2>Resources</h2>
+<div id="resources" class="grid"></div>
+
+<div class="cta">
+    <h2>Need Help or Want to Connect?</h2>
+    <p>Secure messaging and voice routing tools coming soon.</p>
+    <button>Get Connected</button>
+</div>
+
+</div>
+
+<footer>
+    © 2026 Frenchtown Community Infrastructure
+</footer>
+
+<script>
+const locality = new URLSearchParams(window.location.search).get('locality') || 'frenchtown';
+
+fetch('data/' + locality + '.json')
+.then(res => res.json())
+.then(data => {
+
+document.getElementById('header').innerHTML =
+"<h1>" + data.name + "</h1><p>" + data.tagline + "</p>";
+
+let aHTML = "";
+data.announcements.forEach(a => {
+aHTML += "<div class='card'><h3>"+a.title+"</h3><p>"+a.text+"</p></div>";
+});
+document.getElementById('announcements').innerHTML = aHTML;
+
+let rHTML = "";
+data.resources.forEach(r => {
+rHTML += "<div class='card'><h3>"+r.title+"</h3><p>"+r.text+"</p></div>";
+});
+document.getElementById('resources').innerHTML = rHTML;
+
+});
+</script>
+
+</body>
+</html>
